@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GeoLocation</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_actividad_mapa">ActividadMapa</string>
+    <string name="guardar">Insertar</string>
+    <string name="consulta">Consultar</string>
+    <string name="long_borrar">Borrar</string>
+    <string name="borrado">Ruta Borrada</string>
+    <string name="noeliminar">No se puede eliminar</string>
+    <string name="iniciar">Navegacion iniciada</string>
+    <string name="detenida">Nevegacion finalizada</string>
+    <string name="insertado">Ruta insertada</string>
+</resources>
