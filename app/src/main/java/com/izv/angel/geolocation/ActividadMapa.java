@@ -26,7 +26,6 @@ public class ActividadMapa extends ActionBarActivity implements OnMapReadyCallba
     private ArrayList<Localizacion> posiciones;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,27 +48,6 @@ public class ActividadMapa extends ActionBarActivity implements OnMapReadyCallba
 
     @Override
     public void onMapReady(GoogleMap map) {
-        /*
-        LatLng zona0 = new LatLng(Principal.lista.get(0).getLatitud(), Principal.lista.get(0).getLongitud());
-
-        miMapa.setMyLocationEnabled(true);
-
-        miMapa.moveCamera(CameraUpdateFactory.newLatLngZoom(zona0, 13));
-
-        miMapa.addMarker(new MarkerOptions()
-                .title("Inicio")
-                .snippet("Inicio de la ruta")
-                .position(zona0));
-        for (int i = 0; i <Principal.lista.size() ; i++) {
-            polilinea.add(new LatLng(Principal.lista.get(i).getLatitud(), Principal.lista.get(i).getLongitud()));
-            miMapa.addPolyline(polilinea);
-        }
-        LatLng zonaFin = new LatLng(Principal.lista.get(Principal.lista.size()-1).getLatitud(), Principal.lista.get(Principal.lista.size()-1).getLongitud());
-        miMapa.addMarker(new MarkerOptions()
-                .title("Fin")
-                .snippet("Fin de la ruta")
-                .position(zonaFin));
-        */
         LatLng zona0 = new LatLng(posiciones.get(0).getLatitud(), posiciones.get(0).getLongitud());
         miMapa.setMyLocationEnabled(true);
 
@@ -111,7 +89,18 @@ public class ActividadMapa extends ActionBarActivity implements OnMapReadyCallba
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            if(miMapa.getMapType()==GoogleMap.MAP_TYPE_NORMAL){
+                miMapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+            }else{
+                miMapa.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            }
             return true;
+        }
+        if (id == R.id.action_streetview) {
+            Intent svintent = new Intent(this,StreetView.class);
+            LatLng zonaFin = new LatLng(posiciones.get(posiciones.size()-1).getLatitud(), posiciones.get(posiciones.size()-1).getLongitud());
+            svintent.putExtra("position",zonaFin);
+            startActivity(svintent);
         }
 
         return super.onOptionsItemSelected(item);
